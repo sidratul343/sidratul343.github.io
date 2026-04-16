@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sidratul Montaha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Light theme — lavender */
+    --bg: #faf8ff;
+    --bg-alt: #f3eefa;
+    --surface: #ede6f7;
+    --text: #2d2640;
+    --text-secondary: #6b5f80;
+    --accent: #7c5cbf;
+    --accent-light: #a78bdb;
+    --accent-subtle: #e8ddf5;
+    --link: #6d4aaa;
+    --link-hover: #9370cc;
+    --border: #ddd2ee;
+    --shadow: rgba(124, 92, 191, 0.08);
+    --tag-bg: #ede6f7;
+    --tag-text: #6d4aaa;
+    --card-bg: #ffffff;
+    --nav-bg: rgba(250, 248, 255, 0.85);
+    --toggle-icon: "🌙";
+    --pub-highlight: #f8f4ff;
+    --news-dot: #a78bdb;
+    --gradient-start: #f3eefa;
+    --gradient-end: #faf8ff;
+  }
+
+  [data-theme="dark"] {
+    --bg: #0e0e10;
+    --bg-alt: #141416;
+    --surface: #1a1a1e;
+    --text: #e8e4ef;
+    --text-secondary: #a8a3b5;
+    --accent: #b594e0;
+    --accent-light: #c9adf0;
+    --accent-subtle: #1f1a2e;
+    --link: #c9adf0;
+    --link-hover: #ddc5f7;
+    --border: #2a2a30;
+    --shadow: rgba(0, 0, 0, 0.4);
+    --tag-bg: #1f1a2e;
+    --tag-text: #c9adf0;
+    --card-bg: #141416;
+    --nav-bg: rgba(14, 14, 16, 0.92);
+    --toggle-icon: "☀️";
+    --pub-highlight: #16141e;
+    --news-dot: #b594e0;
+    --gradient-start: #141416;
+    --gradient-end: #0e0e10;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+
+  /* === NAV === */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.4s ease;
+  }
+
+  .nav-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: color 0.25s;
+    text-transform: lowercase;
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--accent);
+  }
+
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--accent);
+    background: var(--accent-subtle);
+    transform: rotate(20deg);
+  }
+
+  /* === MAIN LAYOUT === */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 100px 24px 60px;
+  }
+
+  /* === HERO / ABOUT === */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 48px;
+    align-items: start;
+    margin-bottom: 56px;
+    animation: fadeUp 0.6s ease;
+  }
+
+  .hero-text h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+
+  .hero-text .subtitle {
+    font-size: 15px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  .hero-text p {
+    color: var(--text-secondary);
+    font-size: 14.5px;
+    margin-bottom: 12px;
+  }
+
+  .hero-text p a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .hero-text p a:hover {
+    border-bottom-color: var(--link-hover);
+    color: var(--link-hover);
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 16px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+
+  .hero-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    transition: all 0.25s;
+  }
+
+  .hero-links a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-subtle);
+  }
+
+  .profile-img-wrapper {
+    position: relative;
+  }
+
+  .profile-img {
+    width: 220px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid var(--accent-subtle);
+    box-shadow: 0 8px 30px var(--shadow);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    /* Placeholder gradient since no actual image */
+    background: linear-gradient(135deg, var(--accent-subtle), var(--surface), var(--accent-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 72px;
+  }
+
+  /* === SECTIONS === */
+  section {
+    margin-bottom: 52px;
+    animation: fadeUp 0.5s ease;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent-subtle);
+    display: inline-block;
+  }
+
+  /* === NEWS === */
+  .news-list {
+    list-style: none;
+  }
+
+  .news-list li {
+    display: flex;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    align-items: baseline;
+  }
+
+  .news-list li:last-child { border-bottom: none; }
+
+  .news-date {
+    color: var(--accent);
+    font-weight: 500;
+    white-space: nowrap;
+    min-width: 100px;
+    font-size: 13px;
+  }
+
+  .news-text {
+    color: var(--text-secondary);
+  }
+
+  .news-text a {
+    color: var(--link);
+    text-decoration: none;
+  }
+
+  /* === PUBLICATIONS === */
+  .pub-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+
+  .pub-item:last-child { border-bottom: none; }
+
+  .pub-item:hover {
+    background: var(--pub-highlight);
+    border-radius: 8px;
+    margin: 0 -12px;
+    padding: 18px 12px;
+  }
+
+  .pub-thumb {
+    width: 80px;
+    height: 60px;
+    border-radius: 6px;
+    background: var(--accent-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .pub-info .pub-title {
+    font-weight: 600;
+    font-size: 14.5px;
+    color: var(--text);
+    margin-bottom: 3px;
+    line-height: 1.4;
+  }
+
+  .pub-info .pub-authors {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 3px;
+  }
+
+  .pub-info .pub-authors strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .pub-info .pub-venue {
+    font-size: 12.5px;
+    color: var(--accent-light);
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+
+  .pub-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .pub-links a {
+    font-size: 11.5px;
+    color: var(--tag-text);
+    background: var(--tag-bg);
+    padding: 2px 10px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+
+  .pub-links a:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .pub-year-divider {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 24px 0 8px;
+    opacity: 0.8;
+  }
+
+  /* === PROJECTS === */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+
+  .project-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 20px var(--shadow);
+    transform: translateY(-2px);
+  }
+
+  .project-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .project-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .project-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .project-tags span {
+    font-size: 11px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    padding: 2px 9px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  /* === CV / TIMELINE === */
+  .cv-timeline {
+    position: relative;
+    padding-left: 24px;
+  }
+
+  .cv-timeline::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--accent-subtle);
+  }
+
+  .cv-entry {
+    position: relative;
+    margin-bottom: 24px;
+    padding-left: 12px;
+  }
+
+  .cv-entry::before {
+    content: '';
+    position: absolute;
+    left: -23px;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--accent-subtle);
+  }
+
+  .cv-entry .cv-period {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .cv-entry h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1px;
+  }
+
+  .cv-entry .cv-place {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  .cv-entry .cv-details {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .cv-section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 32px 0 16px;
+  }
+
+  .cv-section-label:first-child {
+    margin-top: 0;
+  }
+
+  /* === AWARDS === */
+  .awards-list {
+    list-style: none;
+  }
+
+  .awards-list li {
+    padding: 8px 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+  }
+
+  .awards-list li:last-child { border-bottom: none; }
+
+  .awards-list .award-icon {
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+
+  /* === FOOTER === */
+  footer {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px 24px 40px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* === SHOW MORE BUTTON === */
+  .show-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--accent);
+    background: none;
+    border: 1px solid var(--accent-subtle);
+    padding: 6px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    transition: all 0.25s;
+  }
+
+  .show-more-btn:hover {
+    background: var(--accent-subtle);
+    border-color: var(--accent);
+  }
+
+  .hidden-pubs { display: none; }
+  .hidden-pubs.show { display: block; }
+
+  /* === ANIMATIONS === */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .stagger-1 { animation-delay: 0.1s; animation-fill-mode: both; }
+  .stagger-2 { animation-delay: 0.2s; animation-fill-mode: both; }
+  .stagger-3 { animation-delay: 0.3s; animation-fill-mode: both; }
+  .stagger-4 { animation-delay: 0.4s; animation-fill-mode: both; }
+  .stagger-5 { animation-delay: 0.5s; animation-fill-mode: both; }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 700px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .hero-text { order: 2; }
+    .profile-img-wrapper { order: 1; justify-self: center; }
+    .profile-img { width: 160px; height: 190px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .pub-item { grid-template-columns: 1fr; }
+    .pub-thumb { display: none; }
+    .nav-links { gap: 14px; }
+    .hero-text h1 { font-size: 30px; }
+  }
+
+  /* scrollbar styling */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--accent-subtle); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent-light); }
+
+  /* selection */
+  ::selection {
+    background: var(--accent-subtle);
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-name">Sidratul Montaha</a>
+    <div class="nav-links">
+      <a href="#about" class="active">about</a>
+      <a href="#news">news</a>
+      <a href="#publications">publications</a>
+      <a href="#projects">projects</a>
+      <a href="#cv">cv</a>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <span id="theme-icon">🌙</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO / ABOUT -->
+  <section class="hero" id="about">
+    <div class="hero-text">
+      <h1>Sidratul Montaha</h1>
+      <div class="subtitle">PhD Student · Computing Science · University of Alberta</div>
+      <p>
+        I am a PhD student in Computing Science at the <a href="https://www.ualberta.ca/">University of Alberta</a>. 
+        My research lies at the intersection of <strong>medical image analysis</strong>, <strong>deep learning</strong>, and <strong>computer vision</strong>. 
+        I'm currently working on RVEF prediction using Cardiac Cine MRI.
+      </p>
+      <p>
+        Previously, I completed my MSc at the <a href="https://www.ucalgary.ca/">University of Calgary</a> (GPA: 3.85/4), 
+        where I worked on privacy-preserving self-supervised learning, novel loss functions for semantic segmentation, and cardiac image analysis. 
+        I earned my BSc from <a href="https://daffodilvarsity.edu.bd/">Daffodil International University</a>, 
+        where my thesis on breast cancer classification led to two Q1 journal publications.
+      </p>
+      <p>
+        I have published <strong>25+ peer-reviewed papers</strong> in venues including IEEE JBHI, IEEE Access, Frontiers in Medicine, PLOS ONE, and Canadian AI.
+      </p>
+      <div class="hero-links">
+        <a href="mailto:montaha@ualberta.ca">✉ Email</a>
+        <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank">🎓 Scholar</a>
+        <a href="https://github.com/sidratul343" target="_blank">⌨ GitHub</a>
+        <a href="https://www.linkedin.com/in/sidratul-montaha/" target="_blank">💼 LinkedIn</a>
+      </div>
+    </div>
+    <div class="profile-img-wrapper">
+      <div class="profile-img" title="Add your photo here">👩‍💻</div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section id="news" class="stagger-1">
+    <div class="section-title">news</div>
+    <ul class="news-list">
+      <li>
+        <span class="news-date">Jan 2026</span>
+        <span class="news-text">Started my PhD at the University of Alberta! 🎉</span>
+      </li>
+      <li>
+        <span class="news-date">2025</span>
+        <span class="news-text">Paper accepted at <strong>IEEE JBHI</strong> — Federated Pseudo-labeling for Medical Image Segmentation.</span>
+      </li>
+      <li>
+        <span class="news-date">2025</span>
+        <span class="news-text">Paper accepted at <strong>Canadian AI 2025</strong> — Balanced-Boundary IoU metric.</span>
+      </li>
+      <li>
+        <span class="news-date">2026</span>
+        <span class="news-text">Awarded <strong>Alberta Innovates GSS</strong> Scholarship at UAlberta.</span>
+      </li>
+      <li>
+        <span class="news-date">2024</span>
+        <span class="news-text">Received Alberta Graduate Excellence Scholarship (AGES) & Alberta Innovates GSS at UCalgary.</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- SELECTED PUBLICATIONS -->
+  <section id="publications" class="stagger-2">
+    <div class="section-title">selected publications</div>
+
+    <div class="pub-year-divider">2025</div>
+
+    <div class="pub-item">
+      <div class="pub-thumb">🧠</div>
+      <div class="pub-info">
+        <div class="pub-title">Federated Pseudo-labeling: A Data-Centric, Privacy-Preserving Framework for Medical Image Segmentation</div>
+        <div class="pub-authors"><strong>Sidratul Montaha</strong>, Rashik Rahman, Tapotosh Ghosh, Farnaz Sheikhi, Farhad Maleki</div>
+        <div class="pub-venue">IEEE Journal of Biomedical and Health Informatics (JBHI), 2025 · Also at BHI 2025</div>
+        <div class="pub-links">
+          <a href="#">PDF</a>
+          <a href="#">DOI</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-thumb">📐</div>
+      <div class="pub-info">
+        <div class="pub-title">Balanced-Boundary IoU: A Holistic Algorithm Towards Improving Segmentation Evaluation Metric</div>
+        <div class="pub-authors"><strong>Sidratul Montaha</strong>, Rashik Rahman, Nathan Weiss</div>
+        <div class="pub-venue">Canadian Conference on Artificial Intelligence (Canadian AI), 2025</div>
+        <div class="pub-links">
+          <a href="#">PDF</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-year-divider">2024</div>
+
+    <div class="pub-item">
+      <div class="pub-thumb">🔬</div>
+      <div class="pub-info">
+        <div class="pub-title">Malignancy Pattern Analysis of Breast Ultrasound Images Using Clinical Features and a Graph Convolutional Network</div>
+        <div class="pub-authors"><strong>Sidratul Montaha</strong>, Sami Azam, Md Rahad Islam Bhuiyan, et al.</div>
+        <div class="pub-venue">Digital Health, 2024</div>
+        <div class="pub-links">
+          <a href="#">PDF</a>
+          <a href="#">DOI</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-year-divider">2023</div>
+
+    <div class="pub-item">
+      <div class="pub-thumb">🧩</div>
+      <div class="pub-info">
+        <div class="pub-title">Brain Tumor Segmentation from 3D MRI Scans Using U-NeT</div>
+        <div class="pub-authors"><strong>Sidratul Montaha</strong>, Sami Azam, A.K.M. Rakibul Haque Rafid, et al.</div>
+        <div class="pub-venue">SN Computer Science, 2023</div>
+        <div class="pub-links">
+          <a href="#">PDF</a>
+          <a href="#">DOI</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-year-divider">2022</div>
+
+    <div class="pub-item">
+      <div class="pub-thumb">🩺</div>
+      <div class="pub-info">
+        <div class="pub-title">MNet-10: A Robust Shallow CNN Model Performing Ablation Study on Medical Images</div>
+        <div class="pub-authors"><strong>Sidratul Montaha</strong>, Sami Azam, AKM Rakibul Haque Rafid, et al.</div>
+        <div class="pub-venue">Frontiers in Medicine, 2022</div>
+        <div class="pub-links">
+          <a href="#">PDF</a>
+          <a href="#">DOI</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-thumb">🔎</div>
+      <div class="pub-info">
+        <div class="pub-title">A Shallow Deep Learning Approach to Classify Skin Cancer Using Down-Scaling Method</div>
+        <div class="pub-authors"><strong>Sidratul Montaha</strong>, Sami Azam, AKM Rakibul Haque Rafid, et al.</div>
+        <div class="pub-venue">PLOS ONE, 2022</div>
+        <div class="pub-links">
+          <a href="#">PDF</a>
+          <a href="#">DOI</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-thumb">🎯</div>
+      <div class="pub-info">
+        <div class="pub-title">Time-Distributed CNN-LSTM: Combining CNN and LSTM to Classify Brain Tumor on 3D MRI Scans</div>
+        <div class="pub-authors"><strong>Sidratul Montaha</strong>, Sami Azam, AKM Rakibul Haque Rafid, et al.</div>
+        <div class="pub-venue">IEEE Access, 2022</div>
+        <div class="pub-links">
+          <a href="#">PDF</a>
+          <a href="#">DOI</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-thumb">🩻</div>
+      <div class="pub-info">
+        <div class="pub-title">BreastNet18: A High Accuracy Fine-Tuned VGG16 Model for Diagnosing Breast Cancer from Enhanced Mammography Images</div>
+        <div class="pub-authors"><strong>Sidratul Montaha</strong>, Sami Azam, AKM Rakibul Haque Rafid, et al.</div>
+        <div class="pub-venue">Biology, 2021</div>
+        <div class="pub-links">
+          <a href="#">PDF</a>
+          <a href="#">DOI</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hidden additional pubs -->
+    <div class="hidden-pubs" id="morePubs">
+      <div class="pub-year-divider">Co-authored (Selected)</div>
+
+      <div class="pub-item">
+        <div class="pub-thumb">📊</div>
+        <div class="pub-info">
+          <div class="pub-title">Fast and Efficient Lung Abnormality Identification with Explainable AI</div>
+          <div class="pub-authors">Md Zahid Hasan, <strong>Sidratul Montaha</strong>, et al.</div>
+          <div class="pub-venue">IEEE Access, 2024</div>
+          <div class="pub-links"><a href="#">PDF</a></div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-thumb">📈</div>
+        <div class="pub-info">
+          <div class="pub-title">Graph Neural Network-Based Breast Cancer Diagnosis Using Ultrasound Images</div>
+          <div class="pub-authors">Sadia Sultana Chowa, Sami Azam, <strong>Sidratul Montaha</strong>, et al.</div>
+          <div class="pub-venue">J. Cancer Research & Clinical Oncology, 2023</div>
+          <div class="pub-links"><a href="#">PDF</a></div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-thumb">🫁</div>
+        <div class="pub-info">
+          <div class="pub-title">Automated Broncho-Arterial Pair Segmentation and BA Ratio Assessment in Children with Bronchiectasis</div>
+          <div class="pub-authors">Sami Azam, <strong>Sidratul Montaha</strong>, et al.</div>
+          <div class="pub-venue">Biomedicines, 2023</div>
+          <div class="pub-links"><a href="#">PDF</a></div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-thumb">❤️</div>
+        <div class="pub-info">
+          <div class="pub-title">Automated Breast Tumor Ultrasound Image Segmentation with Hybrid UNet and Classification</div>
+          <div class="pub-authors">Shahed Hossain, Sami Azam, <strong>Sidratul Montaha</strong>, et al.</div>
+          <div class="pub-venue">Heliyon, 2023</div>
+          <div class="pub-links"><a href="#">PDF</a></div>
+        </div>
+      </div>
+    </div>
+
+    <button class="show-more-btn" onclick="togglePubs()">
+      <span id="pubBtnText">show all publications ↓</span>
+    </button>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="stagger-3">
+    <div class="section-title">projects</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Cardiac RVEF Prediction</h3>
+        <p>Predicting right ventricular ejection fraction from cardiac cine MRI using deep learning approaches.</p>
+        <div class="project-tags">
+          <span>Cardiac MRI</span>
+          <span>Deep Learning</span>
+          <span>Ongoing</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <h3>Federated Pseudo-labeling</h3>
+        <p>A privacy-preserving framework for medical image segmentation combining federated learning with pseudo-labeling strategies.</p>
+        <div class="project-tags">
+          <span>Federated Learning</span>
+          <span>Privacy</span>
+          <span>Segmentation</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <h3>Balanced-Boundary IoU</h3>
+        <p>A novel holistic evaluation metric for segmentation that accounts for both region overlap and boundary accuracy.</p>
+        <div class="project-tags">
+          <span>Metrics</span>
+          <span>Segmentation</span>
+          <span>Evaluation</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <h3>Breast Cancer Diagnosis</h3>
+        <p>Multiple projects on mammogram and ultrasound classification using CNNs, graph neural networks, and clinical features.</p>
+        <div class="project-tags">
+          <span>Medical Imaging</span>
+          <span>GCN</span>
+          <span>Classification</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <h3>Brain Tumor Segmentation</h3>
+        <p>3D brain tumor segmentation from MRI scans using U-Net and hybrid CNN-LSTM architectures.</p>
+        <div class="project-tags">
+          <span>3D MRI</span>
+          <span>U-Net</span>
+          <span>LSTM</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <h3>Bronchiectasis Detection</h3>
+        <p>CAD-based detection and segmentation of bronchiectasis in children using HRCT scans, under Menzies School of Health Research.</p>
+        <div class="project-tags">
+          <span>CT Scans</span>
+          <span>Pediatric</span>
+          <span>CAD</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CV -->
+  <section id="cv" class="stagger-4">
+    <div class="section-title">curriculum vitae</div>
+
+    <div class="cv-section-label">Education</div>
+    <div class="cv-timeline">
+      <div class="cv-entry">
+        <div class="cv-period">Jan 2026 – Present</div>
+        <h3>PhD, Computing Science</h3>
+        <div class="cv-place">University of Alberta, Edmonton, AB</div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-period">Sept 2023 – Aug 2025</div>
+        <h3>MSc, Computer Science · GPA: 3.85/4</h3>
+        <div class="cv-place">University of Calgary, Calgary, AB</div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-period">May 2018 – Apr 2022</div>
+        <h3>BSc, Computer Science & Engineering · GPA: 3.82/4</h3>
+        <div class="cv-place">Daffodil International University, Dhaka, Bangladesh</div>
+      </div>
+    </div>
+
+    <div class="cv-section-label">Experience</div>
+    <div class="cv-timeline">
+      <div class="cv-entry">
+        <div class="cv-period">Jan 2026 – Present</div>
+        <h3>Research Assistant & Teaching Assistant</h3>
+        <div class="cv-place">University of Alberta</div>
+        <div class="cv-details">RA: Cardiac RVEF prediction using Cine MRI · TA: CMPUT 274</div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-period">Sept 2023 – Aug 2025</div>
+        <h3>Research Assistant & Teaching Assistant</h3>
+        <div class="cv-place">University of Calgary</div>
+        <div class="cv-details">RA: Federated learning, semantic segmentation, point clouds, cardiac analysis · TA: CPSC 217, 331, 413, SENG 513</div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-period">July 2022 – July 2023</div>
+        <h3>Research Assistant (Remote)</h3>
+        <div class="cv-place">Charles Darwin University, Australia</div>
+        <div class="cv-details">Bronchiectasis detection & segmentation from HRCT scans under Menzies School of Health Research</div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-period">June 2022 – July 2023</div>
+        <h3>Research Coordinator</h3>
+        <div class="cv-place">Health Informatics Research Lab, Dhaka</div>
+        <div class="cv-details">Led research activities in Computer Vision and Health Informatics</div>
+      </div>
+    </div>
+
+    <div class="cv-section-label">Awards</div>
+    <ul class="awards-list">
+      <li><span class="award-icon">🏆</span> Alberta Innovates GSS – University of Alberta, 2026</li>
+      <li><span class="award-icon">🏆</span> Faculty of Graduate Studies Master's Scholarship – UCalgary, 2025</li>
+      <li><span class="award-icon">🏆</span> Alberta Innovates GSS – UCalgary, 2024</li>
+      <li><span class="award-icon">🏆</span> Alberta Graduate Excellence Scholarship (AGES) – 2024</li>
+      <li><span class="award-icon">🏆</span> International Graduate Tuition Award – UCalgary, 2023–2025</li>
+      <li><span class="award-icon">🏆</span> International Graduate Recruitment Award – UCalgary, 2024</li>
+      <li><span class="award-icon">🏆</span> Academic Excellence Scholarship – 70% tuition waiver, DIU</li>
+      <li><span class="award-icon">🎖</span> Research Excellence Award – DIU, 2022, 2023, 2024</li>
+    </ul>
+
+    <div class="cv-section-label">Workshops & Mentoring</div>
+    <ul class="awards-list">
+      <li><span class="award-icon">🎤</span> AI Research School Mentor – Deep learning project mentorship, 2023</li>
+      <li><span class="award-icon">🎤</span> Workshop: A to Z Tricks of Medical Image Processing – DIU, 2021</li>
+      <li><span class="award-icon">🎤</span> Workshop: Beginner's Guide to Graph Algorithms – DUET, 2021</li>
+      <li><span class="award-icon">🎤</span> Workshop: Beginner's Guide to TensorFlow – Univ. of Asia Pacific, 2021</li>
+      <li><span class="award-icon">🎤</span> Workshop: ML with TensorFlow on GCP – UIU, 2022</li>
+    </ul>
+
+  </section>
+
+</main>
+
+<footer>
+  The best way to reach me is by <a href="mailto:montaha@ualberta.ca">email</a>. ✉️<br>
+  © 2026 Sidratul Montaha · Built with care 💜
+</footer>
+
+<script>
+  // === THEME TOGGLE ===
+  function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    const next = current === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    document.getElementById('theme-icon').textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('theme', next);
+  }
+
+  // Load saved theme
+  (function() {
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+      document.documentElement.setAttribute('data-theme', saved);
+      document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('theme-icon').textContent = saved === 'dark' ? '☀️' : '🌙';
+      });
+    } else {
+      // Respect system preference
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.addEventListener('DOMContentLoaded', () => {
+          document.getElementById('theme-icon').textContent = '☀️';
+        });
+      }
+    }
+  })();
+
+  // === SHOW MORE PUBS ===
+  function togglePubs() {
+    const el = document.getElementById('morePubs');
+    const btn = document.getElementById('pubBtnText');
+    el.classList.toggle('show');
+    btn.textContent = el.classList.contains('show') 
+      ? 'show fewer ↑' 
+      : 'show all publications ↓';
+  }
+
+  // === ACTIVE NAV LINK ===
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const top = section.offsetTop - 120;
+      if (scrollY >= top) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
